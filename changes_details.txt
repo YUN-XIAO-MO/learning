@@ -1,0 +1,55 @@
+the original one is gregwchase's cnn.py
+
+in cnn.py I changed
+
+at line 49 and line 174: delete the parameter ———— nb_gpus
+
+at line 91 : I delete this line,I have only one gpu
+
+those are all the changes
+
+
+here is the whole log：
+================================================================================================
+
+D:\Anaconda3\envs\tensorflow\python.exe D:/Desktop/Python_WorkSpace/workspace/EYE/src/cnn_me.py
+Splitting data into test/ train datasets
+Reshaping Data
+X_train Shape:  (2462, 256, 256, 3)
+X_test Shape:  (616, 256, 256, 3)
+Normalizing Data
+y_train Shape:  (2462, 2)
+y_test Shape:  (616, 2)
+Training Model
+
+
+2022-01-25 17:25:15.484527: I tensorflow/core/platform/cpu_feature_guard.cc:151] 
+This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-01-25 17:25:16.949279: I tensorflow/core/common_runtime/gpu/gpu_process_state.cc:214] Using CUDA malloc Async allocator for GPU: 0
+2022-01-25 17:25:16.950752: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] 
+Created device /job:localhost/replica:0/task:0/device:GPU:0 with 1669 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 3050 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.6
+
+Model flattened out to:  (None, 438048)
+
+
+2022-01-25 17:25:17.338203: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 1548484608 exceeds 10% of free system memory.
+Traceback (most recent call last):
+  File "D:\Desktop\Python_WorkSpace\workspace\EYE\src\cnn_test.py", line 152, in <module>
+    model = cnn_model(X_train=X_train,
+  File "D:\Desktop\Python_WorkSpace\workspace\EYE\src\cnn_test.py", line 83, in cnn_model
+    model.fit(X_train, y_train, batch_size=batch_size, epochs=num_epoch,
+  File "D:\Anaconda3\envs\tensorflow\lib\site-packages\keras\utils\traceback_utils.py", line 67, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "D:\Anaconda3\envs\tensorflow\lib\site-packages\keras\engine\data_adapter.py", line 1420, in _make_class_weight_map_fn
+    class_ids = list(sorted(class_weight.keys()))
+AttributeError: 'str' object has no attribute 'keys'
+
+=====================================================================================================================================================
+
+By the way，here are some packages version details:
+keras 2.7.0
+pandas 1.4.0
+tensorflow 2.7.0
+scikit-learn 1.0.2
+scikit-image 0.19.1
