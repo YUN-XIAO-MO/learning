@@ -66,6 +66,9 @@ def cnn_model(X_train, y_train,num_filters,kernel_size,img_rows, img_cols, chann
 
     model.add(Dense(num_classes))
     model.add(Activation('softmax'))
+    
+    #model = multi_gpu_model(model, gpus=nb_gpus)
+    #delete 
 
     model.compile(loss='binary_crossentropy',  #损失函数
                   optimizer='adam',    #优化器
@@ -148,7 +151,11 @@ if __name__ == '__main__':
     print("y_test Shape: ", y_test.shape)
 
     print("Training Model")
-
+    
+#     model = cnn_model(X_train, y_train, kernel_size, nb_filters, channels, nb_epoch, batch_size,
+#                       nb_classes, nb_gpus=8)
+       #delete
+    
     model = cnn_model(X_train=X_train,
                       y_train=y_train,
                       num_filters=num_filters,
